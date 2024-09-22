@@ -7,6 +7,7 @@ resource "aws_cloudfront_origin_access_control" "OID" {
   signing_protocol                  = "sigv4"
 }
 
+
 locals {
   s3_origin_id = "myS3Origin"
 }
@@ -25,7 +26,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   logging_config {
     include_cookies = false
     bucket          = "mylogs.s3.amazonaws.com"
-    prefix          = "myprefix"
+    prefix          = ""
   }
 
 

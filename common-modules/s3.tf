@@ -32,3 +32,11 @@ resource "aws_s3_bucket_policy" "cloudfront_s3_access" {
       }" 
     EOF
 }
+
+resource "aws_s3_bucket" "logs_bucket" {
+  bucket = "cloudfront_logs"
+
+  tags = {
+    Name        = "cloudfront_logs"
+  }
+}
