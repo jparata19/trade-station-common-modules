@@ -1,8 +1,19 @@
  
+resource "aws_cloudfront_origin_access_control" "OID" {
+  name                              = "OID"
+  description                       = "OID Policy"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+locals {
+  s3_origin_id = "myS3Origin"
+}
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name              = aws_s3_bucket.s3_bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.OID.id
     origin_id                = local.s3_origin_id
   }
 
@@ -91,9 +102,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
 
-  tags = {
-    Environment = "dev"
-  }
+
 
   viewer_certificate {
     cloudfront_default_certificate = true
