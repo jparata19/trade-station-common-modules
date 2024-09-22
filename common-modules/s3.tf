@@ -24,7 +24,7 @@ resource "aws_s3_bucket_policy" "cloudfront_s3_access" {
                 "Resource": "${var.bucket_name}/*",
                 "Condition": {
                     "StringEquals": {
-                      "AWS:SourceArn": "arn:aws:cloudfront::${aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.s3_distribution.id}"
+                      "AWS:SourceArn": "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.s3_distribution.id}"
                     }
                 }
             }
