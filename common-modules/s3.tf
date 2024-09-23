@@ -34,7 +34,7 @@ resource "aws_s3_bucket_policy" "cloudfront_s3_access" {
 }
 
 resource "aws_s3_bucket" "logs_bucket" {
-  bucket = "cloudfront-logs"
+  bucket = "cloudfront-logs-trade-station"
 
   tags = {
     Name        = "cloudfront_logs"
