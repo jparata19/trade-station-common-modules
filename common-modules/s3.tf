@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "s3_bucket" {
 resource "aws_s3_bucket_policy" "cloudfront_s3_access" {
   bucket = aws_s3_bucket.s3_bucket.id
   policy =<<EOF
-  "{
+  {
         "Version": "2008-10-17",
         "Id": "PolicyForCloudFrontPrivateContent",
         "Statement": [
@@ -29,7 +29,7 @@ resource "aws_s3_bucket_policy" "cloudfront_s3_access" {
                 }
             }
         ]
-      }" 
+      } 
     EOF
 }
 
