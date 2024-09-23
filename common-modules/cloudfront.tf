@@ -25,7 +25,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   logging_config {
     include_cookies = false
-    bucket          = "cloudfront-logs.s3.amazonaws.com"
+    bucket          = "cloudfront-logs-trade-station.s3.amazonaws.com"
     prefix          = "cloudfront-logs"
   }
 
