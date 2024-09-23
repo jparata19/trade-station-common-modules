@@ -48,7 +48,20 @@ resource "aws_s3_bucket_ownership_controls" "cloudfront_logs_s3_ownership" {
     object_ownership = "BucketOwnerPreferred"
   }
 }
-resource "aws_s3_bucket_acl" "photo_bucket_acl" {
+resource "aws_s3_bucket_acl" "cloudfront_logs_s3_acl" {
   bucket = aws_s3_bucket.logs_bucket.id
-  acl    = "private"
+
+  access_control_policy {
+    grant {
+      grantee {
+        id   = data.aws_cloudfront_log_delivery_canonical_user_id.current.id
+        type = "CanonicalUser"
+      }
+      permission = "FULL_CONTROL"
+    }
+    owner {
+      id = data.aws_canonical_user_id.current.id
+    }
+  }
 }
+
