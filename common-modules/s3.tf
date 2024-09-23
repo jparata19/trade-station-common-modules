@@ -41,6 +41,13 @@ resource "aws_s3_bucket" "logs_bucket" {
   }
 }
 
+resource "aws_s3_bucket_ownership_controls" "cloudfront_logs_s3_ownership" {
+  bucket = aws_s3_bucket.logs_bucket.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
 resource "aws_s3_bucket_acl" "photo_bucket_acl" {
   bucket = aws_s3_bucket.logs_bucket.id
   acl    = "private"
